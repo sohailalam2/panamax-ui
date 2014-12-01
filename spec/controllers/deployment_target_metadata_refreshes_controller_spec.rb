@@ -3,7 +3,7 @@ require 'spec_helper'
 describe DeploymentTargetMetadataRefreshesController do
   describe '#create' do
     before do
-      DeploymentTargetMetadataRefresh.stub(create: double)
+      allow(DeploymentTargetMetadataRefresh).to receive(:create).and_return(double)
       post :create, deployment_target_id: "19"
     end
 

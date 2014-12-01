@@ -5,7 +5,7 @@ describe DeploymentTargetsController do
     let(:deployment_targets) { [double(:target1), double(:target2) ] }
 
     before do
-      DeploymentTarget.stub(:all).and_return(deployment_targets)
+      allow(DeploymentTarget).to receive(:all).and_return(deployment_targets)
     end
 
     it 'assigns all the deployment targets' do
@@ -24,7 +24,7 @@ describe DeploymentTargetsController do
     let(:fake_resource) { { id: '7', type: 'Template' } }
 
     before do
-      DeploymentTarget.stub(:all).and_return(deployment_targets)
+      allow(DeploymentTarget).to receive(:all).and_return(deployment_targets)
     end
 
     context 'with a template id passed in ' do
@@ -59,7 +59,7 @@ describe DeploymentTargetsController do
       let(:valid_target) { double(:valid_target, valid?: true) }
 
       before do
-        DeploymentTarget.stub(:create).with(
+        allow(DeploymentTarget).to receive(:create).with(
                              'name' => 'foo',
                              'auth_blob' => 'zcvasdfasdf'
                            ).and_return(valid_target)
@@ -79,7 +79,7 @@ describe DeploymentTargetsController do
       let(:invalid_target) { double(:invalid_target, model_name: 'DeploymentTarget', valid?: false) }
 
       before do
-        DeploymentTarget.stub(:create).and_return(invalid_target)
+        allow(DeploymentTarget).to receive(:create).and_return(invalid_target)
         post :create, deployment_target_params
       end
 
@@ -97,7 +97,7 @@ describe DeploymentTargetsController do
     let(:fake_target) { double(:fake_target, destroy: true) }
 
     before do
-      DeploymentTarget.stub(:find).with('13').and_return(fake_target)
+      allow(DeploymentTarget).to receive(:find).with('13').and_return(fake_target)
     end
 
     context 'html format' do
