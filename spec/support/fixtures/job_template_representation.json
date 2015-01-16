@@ -1,5 +1,4 @@
-[
-  {
+{
   "id": 1,
   "name": "Amazon Web Services",
   "description": "Short-description",
@@ -62,4 +61,3 @@
   }
   ]
 }
-]
